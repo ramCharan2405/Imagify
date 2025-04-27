@@ -32,7 +32,7 @@ const Login = () => {
       const { data } = await axios.post(`${backendUrl}${endpoint}`, payload);
       console.log("← response:", data);
 
-      // backend returns 'sucess' (typo) so support both keys
+      
       const successFlag = data.success ?? data.sucess;
       if (successFlag) {
         setToken(data.token);
