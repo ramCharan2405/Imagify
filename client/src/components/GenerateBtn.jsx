@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { assets } from '../assets/assets'
+import { assets } from '../assets/assets.js'
 import { motion } from "framer-motion";
-import { AppContext } from '../context/AppContext';
+import { AppContext } from '../context/AppContext.jsx';
 import { useNavigate } from 'react-router-dom';
 const GenerateBtn = () => {
   const {user,setShowLogin}=useContext(AppContext)

@@ -1,5 +1,5 @@
 import React from "react";
-import { assets, testimonialsData } from "../assets/assets";
+import { assets, testimonialsData } from "../assets/assets.js";
 import { motion } from "framer-motion";
 const Testmonial = () => {
   return (
