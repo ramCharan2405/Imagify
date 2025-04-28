@@ -22,11 +22,14 @@ app.use('/api/user',userRouter)
 app.use('/api/image',imageRouter)
 app.get('/',(req,res)=>res.send("API Working fine"))
 
-if(process.env.NODE_ENV==="production"){
-    app.use(express.static(path.join(__dirname,"../client/dist")))
-    app.get("*",(req,res)=>{
-        res.sendFile(path.join(__dirname,"../client","dist","index.html"))
-    })
+if (process.env.NODE_ENV === "production") {
+    const clientBuildPath = path.join(__dirname, "./client/dist");
+
+    app.use(express.static(clientBuildPath));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(clientBuildPath, "index.html"));
+    });
 }
 
 app.listen(PORT,()=>console.log('Server running on port '+PORT))
