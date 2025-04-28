@@ -1,35 +1,33 @@
-import express from 'express'
-import cors from 'cors'
-import 'dotenv/config'
+import express from 'express';
+import cors from 'cors';
+import 'dotenv/config';
 
-import connectDB from './config/mongodb.js'
+import connectDB from './config/mongodb.js';
 import userRouter from './routes/userRoutes.js';
 import imageRouter from './routes/imageRoutes.js';
 
-import path from "path"
- 
-const PORT =process.env.PORT|| 4000;
-const __dirname=path.resolve()
-const app=express()
+import path from "path";
 
-app.use(express.json())
+const PORT = process.env.PORT || 4000;
+const __dirname = path.resolve();
+const app = express();
+
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors());
 
-await connectDB()
+await connectDB();
 
-app.use('/api/user',userRouter)
-app.use('/api/image',imageRouter)
-app.get('/',(req,res)=>res.send("API Working fine"))
+app.use('/api/user', userRouter);
+app.use('/api/image', imageRouter);
+
+app.get('/', (req, res) => res.send("API Working fine"));
 
 if (process.env.NODE_ENV === "production") {
-    const clientBuildPath = path.join(__dirname, "./client/dist");
-
-    app.use(express.static(clientBuildPath));
-
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(clientBuildPath, "index.html"));
-    });
+  app.use(express.static(path.join(__dirname, "../client/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
+  });
 }
 
-app.listen(PORT,()=>console.log('Server running on port '+PORT))
+app.listen(PORT, () => console.log('Server running on port ' + PORT));
