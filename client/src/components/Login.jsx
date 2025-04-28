@@ -30,7 +30,7 @@ const Login = () => {
 
       console.log("POST →", `${backendUrl}${endpoint}`, payload);
       const { data } = await axios.post(`${backendUrl}${endpoint}`, payload);
-      console.log("← response:", data);
+      
 
       
       const successFlag = data.success ?? data.sucess;
