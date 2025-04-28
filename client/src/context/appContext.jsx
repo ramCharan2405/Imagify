@@ -12,7 +12,7 @@ const AppContextProvider = ({ children }) => {
     () => localStorage.getItem("token") || null
   );
   const [credit, setCredit] = useState(false);
-  const backendUrl = import.meta.env.MODE==='development' ? import.meta.env.VITE_BACKEND_URL : '';
+  const backendUrl = import.meta.env.MODE==='development' ?' http://localhost:4000' : '';
   const navigate = useNavigate();
   const loadCreditsData = async () => {
     try {
